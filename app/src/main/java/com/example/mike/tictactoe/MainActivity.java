@@ -11,86 +11,54 @@ public class MainActivity extends AppCompatActivity {
 
     public Game game;
 
+    private Button b1;
+    private Button b2;
+    private Button b3;
+    private Button b4;
+    private Button b5;
+    private Button b6;
+    private Button b7;
+    private Button b8;
+    private Button b9;
+
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        // link variables to grid buttons
+        b1 = findViewById(R.id.button);
+        b2 = findViewById(R.id.button2);
+        b3 = findViewById(R.id.button3);
+        b4 = findViewById(R.id.button4);
+        b5 = findViewById(R.id.button5);
+        b6 = findViewById(R.id.button6);
+        b7 = findViewById(R.id.button7);
+        b8 = findViewById(R.id.button8);
+        b9 = findViewById(R.id.button9);
+
+        // create variable to show game result
+        TextView result = findViewById(R.id.textView);
+
+        // save result of game
+        if (!result.getText().toString().equals("")) {
+            String resultText = result.getText().toString();
+            outState.putString("resultText", resultText);
+        }
+
+        // save game
         outState.putSerializable("game", game);
 
-        // remember text on textview
-        if (((TextView)findViewById(R.id.textView)).getText().toString().equals("Player 1 wins!")) {
-            outState.putString("resultText", "Player 1 wins!");
-        }
-        if (((TextView)findViewById(R.id.textView)).getText().toString().equals("Player 2 wins!")) {
-            outState.putString("resultText", "Player 2 wins!");
-        }
-        if (((TextView)findViewById(R.id.textView)).getText().toString().equals("It's a draw!")) {
-            outState.putString("resultText", "It's a draw!");
-        }
-
-        // remember text of buttons
-        if (((Button)findViewById(R.id.button9)).getText().toString().equals("X")) {
-            outState.putString("b_9", "X");
-        }
-        if (((Button)findViewById(R.id.button9)).getText().toString().equals("O")) {
-            outState.putString("b_9", "O");
-        }
-
-        if (((Button)findViewById(R.id.button8)).getText().toString().equals("X")) {
-            outState.putString("b_8", "X");
-        }
-        if (((Button)findViewById(R.id.button8)).getText().toString().equals("O")) {
-            outState.putString("b_8", "O");
-        }
-
-        if (((Button)findViewById(R.id.button7)).getText().toString().equals("X")) {
-            outState.putString("b_7", "X");
-        }
-        if (((Button)findViewById(R.id.button7)).getText().toString().equals("O")) {
-            outState.putString("b_7", "O");
-        }
-
-        if (((Button)findViewById(R.id.button6)).getText().toString().equals("X")) {
-            outState.putString("b_6", "X");
-        }
-        if (((Button)findViewById(R.id.button6)).getText().toString().equals("O")) {
-            outState.putString("b_6", "O");
-        }
-
-        if (((Button)findViewById(R.id.button5)).getText().toString().equals("X")) {
-            outState.putString("b_5", "X");
-        }
-        if (((Button)findViewById(R.id.button5)).getText().toString().equals("O")) {
-            outState.putString("b_5", "O");
-        }
-
-        if (((Button)findViewById(R.id.button4)).getText().toString().equals("X")) {
-            outState.putString("b_4", "X");
-        }
-        if (((Button)findViewById(R.id.button4)).getText().toString().equals("O")) {
-            outState.putString("b_4", "O");
-        }
-
-        if (((Button)findViewById(R.id.button3)).getText().toString().equals("X")) {
-            outState.putString("b_3", "X");
-        }
-        if (((Button)findViewById(R.id.button3)).getText().toString().equals("O")) {
-            outState.putString("b_3", "O");
-        }
-
-        if (((Button)findViewById(R.id.button2)).getText().toString().equals("X")) {
-            outState.putString("b_2", "X");
-        }
-        if (((Button)findViewById(R.id.button2)).getText().toString().equals("O")) {
-            outState.putString("b_2", "O");
-        }
-
-        if (((Button)findViewById(R.id.button)).getText().toString().equals("X")) {
-            outState.putString("b_1", "X");
-        }
-        if (((Button)findViewById(R.id.button)).getText().toString().equals("O")) {
-            outState.putString("b_1", "O");
-        }
+        // remember symbols on grid
+        outState.putString("b_9", b9.getText().toString());
+        outState.putString("b_8", b8.getText().toString());
+        outState.putString("b_7", b7.getText().toString());
+        outState.putString("b_6", b6.getText().toString());
+        outState.putString("b_5", b5.getText().toString());
+        outState.putString("b_4", b4.getText().toString());
+        outState.putString("b_3", b3.getText().toString());
+        outState.putString("b_2", b2.getText().toString());
+        outState.putString("b_1", b1.getText().toString());
 
     }
 
@@ -99,120 +67,51 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // initialize game
-        // game = new Game();
+        // bind grid buttons to variables
+        b1 = findViewById(R.id.button);
+        b2 = findViewById(R.id.button2);
+        b3 = findViewById(R.id.button3);
+        b4 = findViewById(R.id.button4);
+        b5 = findViewById(R.id.button5);
+        b6 = findViewById(R.id.button6);
+        b7 = findViewById(R.id.button7);
+        b8 = findViewById(R.id.button8);
+        b9 = findViewById(R.id.button9);
 
-
-
+        // retrieve game being played
         if (savedInstanceState != null) {
-            // retrieve game
             game = (Game) savedInstanceState.getSerializable("game");
 
-            if (savedInstanceState.getString("resultText") == "Player 1 wins!") {
+            if (savedInstanceState.getString("resultText") != null) {
+
+                String endResult = savedInstanceState.getString("resultText");
                 TextView resultText = findViewById(R.id.textView);
-                resultText.setText("Player 1 wins!");
-            }
-            if (savedInstanceState.getString("resultText") == "Player 2 wins!") {
-                TextView resultText = findViewById(R.id.textView);
-                resultText.setText("Player 2 wins!");
-            }
-            if (savedInstanceState.getString("resultText") == "It's a draw!") {
-                TextView resultText = findViewById(R.id.textView);
-                resultText.setText("It's a draw!");
+                resultText.setText(endResult);
             }
 
-            if (savedInstanceState.getString("b_9") == ("X")) {
-                Button button9 = findViewById(R.id.button9);
-                button9.setText("X");
-            }
-            if (savedInstanceState.getString("b_9") == ("O")) {
-                Button button9 = findViewById(R.id.button9);
-                button9.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_8") == ("X")) {
-                Button button8 = findViewById(R.id.button8);
-                button8.setText("X");
-            }
-            if (savedInstanceState.getString("b_8") == ("O")) {
-                Button button8 = findViewById(R.id.button8);
-                button8.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_7") == ("X")) {
-                Button button7 = findViewById(R.id.button7);
-                button7.setText("X");
-            }
-            if (savedInstanceState.getString("b_7") == ("O")) {
-                Button button7 = findViewById(R.id.button7);
-                button7.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_6") == ("X")) {
-                Button button6 = findViewById(R.id.button6);
-                button6.setText("X");
-            }
-            if (savedInstanceState.getString("b_6") == ("O")) {
-                Button button6 = findViewById(R.id.button6);
-                button6.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_5") == ("X")) {
-                Button button5 = findViewById(R.id.button5);
-                button5.setText("X");
-            }
-            if (savedInstanceState.getString("b_5") == ("O")) {
-                Button button5 = findViewById(R.id.button5);
-                button5.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_4") == ("X")) {
-                Button button4 = findViewById(R.id.button4);
-                button4.setText("X");
-            }
-            if (savedInstanceState.getString("b_4") == ("O")) {
-                Button button4 = findViewById(R.id.button4);
-                button4.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_3") == ("X")) {
-                Button button3 = findViewById(R.id.button3);
-                button3.setText("X");
-            }
-            if (savedInstanceState.getString("b_3") == ("O")) {
-                Button button3 = findViewById(R.id.button3);
-                button3.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_2") == ("X")) {
-                Button button2 = findViewById(R.id.button2);
-                button2.setText("X");
-            }
-            if (savedInstanceState.getString("b_2") == ("O")) {
-                Button button2 = findViewById(R.id.button2);
-                button2.setText("O");
-            }
-
-            if (savedInstanceState.getString("b_1") == ("X")) {
-                Button button1 = findViewById(R.id.button);
-                button1.setText("X");
-            }
-            if (savedInstanceState.getString("b_1") == ("O")) {
-                Button button1 = findViewById(R.id.button);
-                button1.setText("O");
-            }
-        }
-        else {
+            // retrieve x's and o's and project them
+            b9.setText(savedInstanceState.getString("b_9"));
+            b8.setText(savedInstanceState.getString("b_8"));
+            b7.setText(savedInstanceState.getString("b_7"));
+            b6.setText(savedInstanceState.getString("b_6"));
+            b5.setText(savedInstanceState.getString("b_5"));
+            b4.setText(savedInstanceState.getString("b_4"));
+            b3.setText(savedInstanceState.getString("b_3"));
+            b2.setText(savedInstanceState.getString("b_2"));
+            b1.setText(savedInstanceState.getString("b_1"));
+        } else {
+            // if no game in progress, start new game
             game = new Game();
         }
     }
 
-
-
-
+    // when one of the tiles is clicked
     public void tileClicked(View view) {
+
+        // find the state of the game
         GameState winner = game.won();
 
+        // if game is still in progress
         if (winner == GameState.IN_PROGRESS) {
 
             // create variable for textview to show game result
@@ -225,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
             int row;
             int column;
             int id = button.getId();
+
+            // give each square in grid an id
             if (id == R.id.button9) {
                 row = 0;
                 column = 0;
@@ -257,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
             TileState state = game.choose(row, column);
 
+            // set relevant symbol to clicked square
             switch (state) {
                 case CROSS:
                     button.setText("X");
@@ -264,23 +166,33 @@ public class MainActivity extends AppCompatActivity {
                 case CIRCLE:
                     button.setText("O");
                     break;
+
+                // when move is invalid
                 case INVALID:
-                    resultText.setText("Invalid move!");
+                    String invalid = "Invalid move!";
+                    resultText.setText(invalid);
                     break;
             }
 
+            // when game is over
             winner = game.won();
+            String whoWon;
             if (winner == GameState.PLAYER_ONE) {
-                resultText.setText("Player 1 wins!");
+                whoWon = "Player 1 wins!";
             } else if (winner == GameState.PLAYER_TWO) {
-                resultText.setText("Player 2 wins!");
+                whoWon = "Player 2 wins!";
             } else if (winner == GameState.DRAW) {
-                resultText.setText("It's a draw!");
+                whoWon = "It's a draw!";
+            } else {
+                whoWon = "";
             }
+
+            resultText.setText(whoWon);
         }
     }
 
     public void resetClicked (View view) {
+            // when clicked on reset, restart game
             game = new Game();
             setContentView(R.layout.activity_main);
         }

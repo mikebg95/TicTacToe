@@ -10,7 +10,7 @@
     <android.support.v7.widget.GridLayout
         android:layout_width="361dp"
         android:layout_height="272dp"
-        android:layout_gravity="left"
+        android:layout_gravity="center_vertical|center_horizontal|center"
         android:layout_weight="1"
         android:clipToPadding="true"
         app:columnCount="3">
@@ -20,54 +20,81 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:onClick="tileClicked"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:text="" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
         <Button
             android:id="@+id/button7"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
         <Button
             android:id="@+id/button6"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
         <Button
             android:id="@+id/button5"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="90dp"
             android:layout_height="90dp"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:onClick="tileClicked" />
 
     </android.support.v7.widget.GridLayout>
@@ -76,6 +103,7 @@
         android:id="@+id/textView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
         android:gravity="bottom"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -90,7 +118,7 @@
         android:id="@+id/button10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|right"
+        android:layout_gravity="right|center"
         android:onClick="resetClicked"
         android:text="New Game" />
 </LinearLayout>
